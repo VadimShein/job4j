@@ -12,10 +12,12 @@ public class MinTest {
     }
 
     @Test
-    public void whenLastMin() {assertThat(Min.findMin(new int[] {10, 5, 3}), is(3));
+    public void whenLastMin() {
+        assertThat(Min.findMin(new int[] {10, 5, 3}), is(3));
     }
 
     @Test
-    public void whenMiddleMin() {assertThat(Min.findMin(new int[] {10, 2, 5}),is(2));
+    public void whenMiddleMin() {
+        assertThat(Min.findMin(new int[] {10, 2, 5}), is(2));
     }
 }

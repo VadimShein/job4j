@@ -14,7 +14,7 @@ public class DummyBot {
         return rsl;
     }
 
-    public static void main(String[] args ) {
+    public static void main(String[] args) {
         String in = "Привет, Бот.";
         String result = DummyBot.answer(in);
         System.out.println(result);
