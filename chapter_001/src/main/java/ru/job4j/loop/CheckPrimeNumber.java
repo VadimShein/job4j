@@ -4,7 +4,6 @@ public class CheckPrimeNumber {
 
     public static boolean check(int number) {
         boolean prime = true;
-
         if (number == 1) {
             prime = false;
         }
@@ -15,6 +14,5 @@ public class CheckPrimeNumber {
             }
         }
         return prime;
-
     }
 }
