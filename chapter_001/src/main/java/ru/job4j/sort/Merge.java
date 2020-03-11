@@ -6,26 +6,26 @@ public class Merge {
 
     public int[] merge(int[] left, int[] right) {
         int[] rsl = new int[left.length + right.length];
-        int count = 0;
         int countLeft = 0;
         int countRight = 0;
-
-        while (count < rsl.length) {
-            if (left[countLeft] <= right[countRight]) {
-                rsl[count] = left[countLeft];
-                if (countLeft < left.length) {
+        if (left.length == 0) {
+            rsl = right;
+        } else if (right.length == 0) {
+            rsl = left;
+        } else {
+            for (int count = 0; count < rsl.length; count++) {
+                if (countLeft >= left.length) {
+                    rsl[count] = right[countRight];
+                    countRight++;
+                } else if (countRight >= right.length) {
+                    rsl[count] = left[countLeft];
                     countLeft++;
-                    count++;
+                } else if (left[countLeft] < right[countRight]) {
+                    rsl[count] = left[countLeft];
+                    countLeft++;
                 } else {
-                    break;
-                }
-            } else {
-                rsl[count] = right[countRight];
-                if (countRight < right.length - 1) { // здесь без -1 выходит за размеры массива
-                countRight++;
-                    count++;
-                } else {
-                    break;
+                    rsl[count] = right[countRight];
+                    countRight++;
                 }
             }
         }
