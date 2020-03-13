@@ -22,7 +22,7 @@ public class SqMaxTest {
     }
     @Test
     public void sqMax4() {
-        int result = SqMax.max(5,6, 4, 7);
+        int result = SqMax.max(5, 6, 4, 7);
         assertThat(result, is(7));
     }
 }

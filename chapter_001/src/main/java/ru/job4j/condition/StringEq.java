@@ -13,7 +13,6 @@ public class StringEq {
         String your = "Vadim";
         boolean userHasAccess = StringEq.check(your);
         System.out.println(userHasAccess);
-
         your = "root";
         userHasAccess = StringEq.check(your);
         System.out.println(userHasAccess);
