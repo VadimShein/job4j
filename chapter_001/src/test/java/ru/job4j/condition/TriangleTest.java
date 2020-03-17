@@ -20,7 +20,7 @@ public class TriangleTest {
 
     @Test
     public void whenNotBeing() {
-       Point a = new Point(0, 0);
+        Point a = new Point(0, 0);
         Point b = new Point(1, 1);
         Point c = new Point(0, 0);
         Triangle tri = new Triangle(a, b, c);

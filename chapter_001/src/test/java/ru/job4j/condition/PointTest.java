@@ -1,5 +1,5 @@
 package ru.job4j.condition;
-/*
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,13 +7,19 @@ public class PointTest {
 
     @Test
     public void distance() {
-        int x1 = 0;
-        int y1 = 0;
-        int x2 = 2;
-        int y2 = 2;
-
-        double expected = 2.82;
-        double out = Point.distance(x1, y1, x2, y2);
-        Assert.assertEquals(expected, out, 0.01);
+        Point a = new Point(0, 0);
+        Point b = new Point(0, 2);
+        double result = a.distance(b);
+        double expected = 2;
+        Assert.assertEquals(expected, result, 0.01);
     }
-}*/
+
+    @Test
+    public void distance3d() {
+        Point a = new Point(0, 0, 0);
+        Point b = new Point(1, 1, 1);
+        double result = a.distance3d(b);
+        double expected = 1.73;
+        Assert.assertEquals(expected, result, 0.01);
+    }
+}
