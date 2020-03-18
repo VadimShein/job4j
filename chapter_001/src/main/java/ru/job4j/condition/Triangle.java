@@ -17,15 +17,13 @@ public class Triangle {
         return (a + b + c) / 2;
     }
     public double area() {
-        double rsl;
+        double rsl = -1;
         double a = first.distance(second);
         double b = first.distance(third);
         double c = second.distance(third);
         double p = period(a, b, c);
         if (this.exist(a, b, c)) {
             rsl = Math.sqrt(p * (p - a) * (p - b) * (p - c));
-        } else {
-            rsl = -1;
         }
         return rsl;
     }
