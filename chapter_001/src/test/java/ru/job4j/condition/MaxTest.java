@@ -5,16 +5,25 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class MaxTest {
+
+    @Test
+    public void maxTwoNumber() {
+        Max maxTwo = new Max();
+        int result = maxTwo.max(-5, -2);
+        assertThat(result, is(-2));
+    }
+
     @Test
     public void maxThreeNumber() {
-        int result = Max.max(1, 2, 5);
+        Max maxThree = new Max();
+        int result = maxThree.max(1, 2, 5);
         assertThat(result, is(5));
     }
 
     @Test
     public void maxFourNumber() {
-        int result = Max.max(5, 2, 5, 1);
-        assertThat(result, is(5));
+        Max maxFour = new Max();
+        int result = maxFour.max(1, 2, 5, 8);
+        assertThat(result, is(8));
     }
-
 }

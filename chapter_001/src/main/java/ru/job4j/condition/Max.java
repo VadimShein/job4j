@@ -1,12 +1,15 @@
 package ru.job4j.condition;
 
 public class Max {
-    public static int max(int first, int second, int third) {
-        int max = (first <= second) ? second : first;
-        return  (third <= max) ? max : third;
+    public int max(int first, int second) {
+        return (first <= second) ? second : first;
     }
-    public static int max(int first, int second, int third, int fourth) {
-        int max = (first <= second) ? second : first;
-        return  max(third, fourth, max);
+
+    public int max(int first, int second, int third) {
+        return max(third, max(first, second));
+
+    }
+    public int max(int first, int second, int third, int fourth) {
+        return max(max(first, second), max(third, fourth));
     }
 }
