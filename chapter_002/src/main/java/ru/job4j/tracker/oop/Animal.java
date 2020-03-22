@@ -9,6 +9,7 @@ public class Animal {
     }
     public static void main(String[] args) {
         Predator predator = new Predator();
-        Tiger tiger = new Tiger("myTiger");
+        Tiger tiger = new Tiger();
+        Tiger tiger2 = new Tiger("myTiger");
     }
 }
