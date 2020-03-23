@@ -1,4 +1,4 @@
-package ru.job4j.polo;
+package ru.job4j.pojo;
 
 import java.util.Date;
 
