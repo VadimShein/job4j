@@ -22,7 +22,6 @@ public class Product {
     public int hashCode() {
         return Objects.hash(name, count);
     }
-
     public Product(String name, int count) {
         this.name = name;
         this.count = count;
@@ -38,17 +37,5 @@ public class Product {
     }
     public void setCount(int count) {
         this.count = count;
-    }
-    public Product[] delete(Product[] products, int index) {
-        products[index] = null;
-        for (int i = 0; i < products.length; i++) {
-            if (i == products.length - 1) {
-                products[i] = null;
-            } else if (products[i] == null) {
-                products[i] = products[i + 1];
-                products[i + 1] = null;
-            }
-        }
-        return products;
     }
 }
