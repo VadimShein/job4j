@@ -59,6 +59,16 @@ public class Tracker {
         return items[index];
     }
 
+    public boolean delete(String id) {
+        int index = indexOf(id);
+        items[index].setName(null);
+        items[index].setId(null);
+        System.arraycopy(items, index + 1, items, index, position - index);
+        items[position - 1] = null;
+        position--;
+        return true;
+    }
+
     private String generateId() {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
