@@ -63,23 +63,50 @@ public class TrackerTest {
         assertThat(result.length, is(0));
     }
     @Test
-    public void whenReplace() {
+    public void whenReplaceTrue() {
+        boolean rsl = false;
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();
         Item bugWithDesc = new Item("Bug with description");
-        tracker.replace(id, bugWithDesc);
+        rsl = tracker.replace(id, bugWithDesc);
+        assertThat(rsl, is(true));
         assertThat(tracker.findById(id).getName(), is("Bug with description"));
     }
     @Test
-    public void whenDelete() {
+    public void whenReplaceFalse() {
+        boolean rsl = false;
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();
-        tracker.delete(id);
+        Item bugWithDesc = new Item("Bug with description");
+        rsl = tracker.replace(id + 100, bugWithDesc);
+        assertThat(rsl, is(false));
+        assertThat(tracker.findById(id).getName(), is("Bug"));
+    }
+    @Test
+    public void whenDeleteTrue() {
+        boolean rsl = false;
+        Tracker tracker = new Tracker();
+        Item bug = new Item("Bug");
+        tracker.add(bug);
+        String id = bug.getId();
+        rsl = tracker.delete(id);
+        assertThat(rsl, is(true));
         assertThat(tracker.findById(id), is(nullValue()));
+    }
+    @Test
+    public void whenDeleteFalse() {
+        boolean rsl = false;
+        Tracker tracker = new Tracker();
+        Item bug = new Item("Bug");
+        tracker.add(bug);
+        String id = bug.getId();
+        rsl = tracker.delete(id + 100);
+        assertThat(rsl, is(false));
+        assertThat(tracker.findById(id).getId(), is(bug.getId()));
     }
 
 }

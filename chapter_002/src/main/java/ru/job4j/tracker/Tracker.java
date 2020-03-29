@@ -23,7 +23,7 @@ public class Tracker {
                 namesWithoutNull[size++] = items[index];
             }
         }
-        return Arrays.copyOf(namesWithoutNull, size);
+        return Arrays.copyOf(this.items, this.position);
     }
 
     public Item[] findByName(String key) {
@@ -53,20 +53,28 @@ public class Tracker {
         return rsl;
     }
 
-    public Item replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
+        int rsl = -1;
         int index = indexOf(id);
-        items[index].setName(item.getName());
-        return items[index];
+        if (index != -1) {
+            items[index].setName(item.getName());
+            rsl = index;
+        }
+        return rsl != -1;
     }
 
     public boolean delete(String id) {
+        int rsl = -1;
         int index = indexOf(id);
-        items[index].setName(null);
-        items[index].setId(null);
-        System.arraycopy(items, index + 1, items, index, position - index);
-        items[position - 1] = null;
-        position--;
-        return true;
+        if (index != -1) {
+            items[index].setName(null);
+            items[index].setId(null);
+            System.arraycopy(items, index + 1, items, index, position - index);
+            items[position - 1] = null;
+            position--;
+            rsl = index;
+        }
+        return rsl != -1;
     }
 
     private String generateId() {
