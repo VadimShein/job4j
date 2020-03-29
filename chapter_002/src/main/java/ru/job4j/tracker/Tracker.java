@@ -57,7 +57,8 @@ public class Tracker {
         int rsl = -1;
         int index = indexOf(id);
         if (index != -1) {
-            items[index].setName(item.getName());
+            items[index] = item;
+            item.setId(id);
             rsl = index;
         }
         return rsl != -1;
@@ -67,8 +68,7 @@ public class Tracker {
         int rsl = -1;
         int index = indexOf(id);
         if (index != -1) {
-            items[index].setName(null);
-            items[index].setId(null);
+            items[index] = null;
             System.arraycopy(items, index + 1, items, index, position - index);
             items[position - 1] = null;
             position--;
