@@ -13,7 +13,7 @@ public class StartUI {
         tracker.add(item);
         System.out.println("Added: " + item.getName() + " " + item.getId());
     }
-    public static void showAllItems(Input input, Tracker tracker) {
+    public static void showAllItems(Tracker tracker) {
         System.out.println("=== Show all items ====");
         Item[] findAll = tracker.findAll();
         if (findAll.length != 0) {
@@ -65,7 +65,7 @@ public class StartUI {
             System.out.println("Value not found");
         }
     }
-    public static void exitProgram(Input input, Tracker tracker) {
+    public static void exitProgram() {
         System.out.println("=== Exit Program ====");
         run = false;
     }
@@ -78,7 +78,7 @@ public class StartUI {
             if (select == 0) {
                 StartUI.createItem(input, tracker);
             } else if (select == 1) {
-                StartUI.showAllItems(input, tracker);
+                StartUI.showAllItems(tracker);
             } else if (select == 2) {
                 StartUI.editItem(input, tracker);
             } else if (select == 3) {
@@ -88,7 +88,7 @@ public class StartUI {
             } else if (select == 5) {
                 StartUI.findItemByName(input, tracker);
             } else if (select == 6) {
-                StartUI.exitProgram(input, tracker);
+                StartUI.exitProgram();
             }
         }
     }
