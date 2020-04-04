@@ -9,10 +9,39 @@ import java.util.StringJoiner;
 
 
 public class PaintTest {
-
-
     @Test
     public void whenDrawSquare() {
+        Square square = new Square();
+        assertThat(
+                square.draw(),
+                is(
+                        new StringJoiner(System.lineSeparator())
+                                .add("++++")
+                                .add("+  +")
+                                .add("+  +")
+                                .add("++++" + System.lineSeparator())
+                                .toString()
+                )
+        );
+    }
+
+    @Test
+    public void whenDrawTriangle() {
+        Triangle triangle = new Triangle();
+        assertThat(
+                triangle.draw(),
+                is(
+                        new StringJoiner(System.lineSeparator())
+                                .add("  +  ")
+                                .add(" + + ")
+                                .add("+++++" + System.lineSeparator())
+                                .toString()
+                )
+        );
+    }
+
+    @Test
+    public void whenDrawSquarePaint() {
         // получаем ссылку на стандартный вывод в консоль.
         PrintStream stdout = System.out;
         // Создаем буфур для хранения вывода.
@@ -27,8 +56,8 @@ public class PaintTest {
                 is(
                         new StringJoiner(System.lineSeparator())
                                 .add("++++")
-                                .add("+     +")
-                                .add("+     +")
+                                .add("+  +")
+                                .add("+  +")
                                 .add("++++")
                                 .add(System.lineSeparator())
                                 .toString()
@@ -38,8 +67,8 @@ public class PaintTest {
         System.setOut(stdout);
     }
 
-    @Test
-    public void whenDrawTriangle() {
+        @Test
+    public void whenDrawTrianglePaint() {
         // получаем ссылку на стандартный вывод в консоль.
         PrintStream stdout = System.out;
         // Создаем буфур для хранения вывода.

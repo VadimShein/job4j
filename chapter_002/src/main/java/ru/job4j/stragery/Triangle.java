@@ -8,7 +8,7 @@ public class Triangle implements Shape {
         StringJoiner pic = new StringJoiner(System.lineSeparator());
         pic.add("  +  ");
         pic.add(" + + ");
-        pic.add("+++++" + "\r\n");
+        pic.add("+++++" + System.lineSeparator());
         return pic.toString();
     }
 }
