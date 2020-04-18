@@ -19,7 +19,7 @@ public class PriorityQueue {
         } else if (taskSize < task.getPriority()) {
             index = taskSize - 1;
         } else {
-            index = task.getPriority() - 1;
+            index = task.getPriority();
         }
         this.tasks.add(index, task);
     }
