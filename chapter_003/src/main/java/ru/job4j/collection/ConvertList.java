@@ -7,10 +7,8 @@ public class ConvertList {
     public static List<Integer> convert(List<int[]> list) {
         List<Integer> rsl = new ArrayList<>();
         for (int[] element : list) {
-            int index = 0;
             for (int ind : element) {
-                rsl.add(element[index]);
-                index++;
+                rsl.add(ind);
             }
         }
         return rsl;
