@@ -3,6 +3,8 @@ package ru.job4j.tracker;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -31,9 +33,9 @@ public class TrackerTest {
         tracker.add(item);
         Item item2 = new Item("test1");
         tracker.add(item2);
-        Item[] result = tracker.findByName(item.getName());
-        assertThat(result[0].getName(), is(item.getName()));
-        assertThat(result[1].getName(), is(item2.getName()));
+        List<Item> result = tracker.findByName(item.getName());
+        assertThat(result.get(0).getName(), is(item.getName()));
+        assertThat(result.get(1).getName(), is(item2.getName()));
     }
     @Test
     public void nameIsNotFound() {
@@ -42,8 +44,8 @@ public class TrackerTest {
         tracker.add(item);
         Item item2 = new Item("test1");
         tracker.add(item2);
-        Item[] result = tracker.findByName("test3");
-        assertThat(result.length, is(0));
+        List<Item> result = tracker.findByName("test3");
+        assertThat(result.size(), is(0));
     }
     @Test
     public void findAll() {
@@ -52,19 +54,19 @@ public class TrackerTest {
         tracker.add(item);
         Item item2 = new Item("test2");
         tracker.add(item2);
-        Item[] result = tracker.findAll();
-        assertThat(result[0].getName(), is(item.getName()));
-        assertThat(result[1].getName(), is(item2.getName()));
+        List<Item> result = tracker.findAll();
+        assertThat(result.get(0).getName(), is(item.getName()));
+        assertThat(result.get(1).getName(), is(item2.getName()));
     }
     @Test
     public void notFindAll() {
         Tracker tracker = new Tracker();
-        Item[] result = tracker.findAll();
-        assertThat(result.length, is(0));
+        List<Item> result = tracker.findAll();
+        assertThat(result.size(), is(0));
     }
     @Test
     public void whenReplaceTrue() {
-        boolean rsl = false;
+        boolean rsl;
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
@@ -76,7 +78,7 @@ public class TrackerTest {
     }
     @Test
     public void whenReplaceFalse() {
-        boolean rsl = false;
+        boolean rsl;
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
@@ -88,7 +90,7 @@ public class TrackerTest {
     }
     @Test
     public void whenDeleteTrue() {
-        boolean rsl = false;
+        boolean rsl;
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
@@ -99,7 +101,7 @@ public class TrackerTest {
     }
     @Test
     public void whenDeleteFalse() {
-        boolean rsl = false;
+        boolean rsl;
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
