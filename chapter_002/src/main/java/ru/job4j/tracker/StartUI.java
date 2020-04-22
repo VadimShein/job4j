@@ -11,9 +11,7 @@ public class StartUI {
             System.out.println();
             this.showMenu(actions);
             int select = input.askInt("Select: ", actions.size());
-            List<UserAction> action = new ArrayList<UserAction>();
-                    action.add(actions.get(select));
-            run = action.get(0).execute(input, tracker);
+            run = actions.get(select).execute(input, tracker);
         }
     }
 
