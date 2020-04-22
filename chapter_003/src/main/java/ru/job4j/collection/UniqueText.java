@@ -14,6 +14,7 @@ public class UniqueText {
         for (String wordFromext : text) {
             if (!check.contains(wordFromext)) {
                 rsl = false;
+                break;
             }
         }
         return rsl;
