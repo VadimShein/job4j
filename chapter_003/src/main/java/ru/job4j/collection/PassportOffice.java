@@ -11,14 +11,6 @@ public class PassportOffice {
         if (!citizens.containsKey(citizen.getPassport())) {
             citizens.put(citizen.getPassport(), citizen);
             rsl = true;
-            for (Map.Entry<String, Citizen> entry : citizens.entrySet()) {
-                String key = entry.getKey();
-                Citizen value = entry.getValue();
-                System.out.println("added " + key + " " + value.getUsername());
-            }
-        } else {
-            System.out.println("citizen " + citizen.getUsername() + " is already added");
-            rsl = false;
         }
         return rsl;
     }
