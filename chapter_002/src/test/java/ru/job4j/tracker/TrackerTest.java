@@ -3,7 +3,9 @@ package ru.job4j.tracker;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -111,4 +113,41 @@ public class TrackerTest {
         assertThat(tracker.findById(id).getId(), is(bug.getId()));
     }
 
+    @Test
+    public void sortByAscending() {
+        Tracker tracker = new Tracker();
+        List<Item> items = new ArrayList<Item>();
+        items.add(new Item("test2"));
+        items.add(new Item("test1"));
+        items.add(new Item("test3"));
+
+        for (Item value : items) {
+            tracker.add(value);
+        }
+        
+        Collections.sort(items);
+        System.out.println(items);
+        assertThat(items.get(0).getName(), is("test1"));
+        assertThat(items.get(1).getName(), is("test2"));
+        assertThat(items.get(2).getName(), is("test3"));
+    }
+
+    @Test
+    public void sortByDescending() {
+        Tracker tracker = new Tracker();
+        List<Item> items = new ArrayList<Item>();
+        items.add(new Item("test2"));
+        items.add(new Item("test1"));
+        items.add(new Item("test3"));
+
+        for (Item value : items) {
+            tracker.add(value);
+        }
+
+        Collections.sort(items, Collections.reverseOrder());
+        System.out.println(items);
+        assertThat(items.get(0).getName(), is("test3"));
+        assertThat(items.get(1).getName(), is("test2"));
+        assertThat(items.get(2).getName(), is("test1"));
+    }
 }
