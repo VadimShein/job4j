@@ -9,23 +9,17 @@ public class StringCompare implements Comparator<String> {
 
         int leftLength = left.length();
         int rightLength = right.length();
-        int size = leftLength;
-        int dif = leftLength - rightLength;
+        int size = rightLength;
+        int difference = leftLength - rightLength;
 
-        if (dif < 0) {
-            size = rightLength;
+        if (leftLength <= rightLength) {
+            size = leftLength;
         }
         for (int i = 0; i < size; i++) {
-            if (i == leftLength) {
-                rsl = right.charAt(i) - 2 * right.charAt(i);
-                break;
-            } else if (i == rightLength) {
-                rsl = left.charAt(i);
-                break;
-            } else if (left.charAt(i) - right.charAt(i) != 0) {
-                rsl = left.charAt(i) - right.charAt(i);
-                break;
-            }
+            rsl += left.charAt(i) - right.charAt(i);
+        }
+        if (rsl == 0) {
+            rsl = difference;
         }
         return rsl;
     }
