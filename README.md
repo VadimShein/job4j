@@ -1,10 +1,2 @@
-# job4j
-
-В курсе производилась работа с веткамы git
-<<<<<<< HEAD
-Объединение зафиксированных изменений...
-=======
-Объединение зафиксированных изменений
->>>>>>> 538ef351f1e4c034a6851c7a7a2862711ec00f02
-
-Создание ветки из IDEA
+[![Build Status](https://travis-ci.org/VadimShein/job4j.svg?branch=master)](https://travis-ci.org/VadimShein/job4j)
+[![codecov](https://codecov.io/gh/VadimShein/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/VadimShein/job4j)
