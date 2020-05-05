@@ -7,15 +7,12 @@ public class LexSort implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
         int rsl = 0;
-        int leftLength = left.length();
-        int rightLength = right.length();
-        int size = rightLength;
+        String[] leftSpl = left.split("\\D+");
+        String[] rightSpl = right.split("\\D+");
 
-        if (leftLength <= rightLength) {
-            size = leftLength;
-        }
+        int size = Math.min(leftSpl.length, rightSpl.length);
         for (int i = 0; i < size; i++) {
-            rsl = Character.compare(left.charAt(i), right.charAt(i));
+            rsl = Integer.compare(Integer.parseInt(leftSpl[i]), Integer.parseInt(rightSpl[i]));
         }
         return rsl;
     }
