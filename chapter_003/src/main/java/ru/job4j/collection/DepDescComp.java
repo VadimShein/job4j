@@ -11,23 +11,11 @@ public class DepDescComp implements Comparator<String> {
         int size = Math.min(o1Spl.length, o2Spl.length);
 
         for (int index = 0; index < size; index++) {
-            int pos = Math.min(o1Spl[index].length(), o2Spl[index].length());
-            if (index == 0) {
-                for (int i = 0; i < pos; i++) {
-                    rsl = Character.compare(o2Spl[index].charAt(i), o1Spl[index].charAt(i));
-                    if (rsl != 0) {
-                        break;
-                    }
-                }
-            } else {
-                for (int i = 0; i < pos; i++) {
-                    rsl = Character.compare(o1Spl[index].charAt(i), o2Spl[index].charAt(i));
-                    if (rsl != 0) {
-                        break;
-                    }
-                }
+            rsl = o2Spl[0].compareTo(o1Spl[0]);
+            if (rsl != 0) {
+                break;
             }
         }
-        return rsl == 0 ? Integer.compare(o1.length(), o2.length()) : rsl;
+        return rsl == 0 ? o1.compareTo(o2) : rsl;
     }
 }
