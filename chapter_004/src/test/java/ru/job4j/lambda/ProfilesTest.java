@@ -13,10 +13,12 @@ public class ProfilesTest {
     public void addressList() {
         Address adr1 = new Address("city1", "street1", 11, 1);
         Address adr2 = new Address("city2", "street2", 22, 2);
+        Address adr3 = new Address("city2", "street2", 22, 2);
 
         List<Profile> profileList = new ArrayList<>();
-        profileList.add(new Profile(adr1));
+        profileList.add(new Profile(adr3));
         profileList.add(new Profile(adr2));
+        profileList.add(new Profile(adr1));
 
         Profiles profiles = new Profiles();
 
