@@ -61,7 +61,8 @@ public class SchoolTest {
         List<Student> student = List.of(
                 new Student("First", 70),
                 new Student("Second", 50),
-                new Student("Third", 30)
+                new Student("Third", 30),
+                new Student("First", 70)
         );
         Map<String, Student> result = sch.toMap(student);
 
