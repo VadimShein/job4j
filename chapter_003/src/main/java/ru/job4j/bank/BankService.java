@@ -1,18 +1,11 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 
 public class BankService {
     private Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
-//        if (!users.containsKey(user)) {
-//        users.put(user, new ArrayList<Account>());
-//    }
         users.putIfAbsent(user, new ArrayList<Account>());
     }
 
@@ -20,35 +13,25 @@ public class BankService {
         User findUser = findByPassport(passport);
         if (findUser != null) {
             List<Account> accounts = users.get(findUser);
-              if (!accounts.contains(account)) {
-                  accounts.add(account);
-              }
+            if (!accounts.contains(account)) {
+                accounts.add(account);
+            }
         }
     }
 
     public User findByPassport(String passport) {
-        User rsl = null;
-        for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
-            User key = entry.getKey();
-            if (key.getPassport().equals(passport)) {
-                rsl = key;
-                break;
-            }
-        }
-        return rsl;
+       return users.keySet().stream()
+               .filter(s -> s.getPassport().equals(passport))
+               .findAny().orElse(null);
     }
 
     public Account findByRequisite(String passport, String requisite) {
         Account rsl = null;
         User findUser = findByPassport(passport);
         if (findUser != null) {
-            List<Account> findAccount = users.get(findUser);
-            for (Account value : findAccount) {
-                if (value.getRequisite().equals(requisite)) {
-                    rsl = value;
-                    break;
-                }
-            }
+           rsl = users.get(findUser).stream()
+                    .filter(e -> e.getRequisite().equals(requisite))
+                    .findAny().orElse(null);
         }
         return rsl;
     }
