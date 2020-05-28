@@ -15,7 +15,7 @@ public class ConvertListTest {
         List<int[]> in = new ArrayList<>();
         in.add(new int[] {1});
         in.add(new int[] {2, 3});
-        List<Integer> expect = Arrays.asList(1, 2, 3);
+        List<Integer> expect = List.of(1, 2, 3);
         assertThat(ConvertList.convert(in), is(expect));
     }
 
@@ -24,7 +24,7 @@ public class ConvertListTest {
         List<int[]> in = new ArrayList<>();
         in.add(new int[] {});
         in.add(new int[] {2, 3, 4});
-        List<Integer> expect = Arrays.asList(2, 3, 4);
+        List<Integer> expect = List.of(2, 3, 4);
         assertThat(ConvertList.convert(in), is(expect));
     }
 }
