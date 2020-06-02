@@ -26,15 +26,9 @@ public class BankService {
     }
 
     public Optional<Account> findByRequisite(String passport, String requisite) {
-        Optional<Account> rsl = Optional.empty();
         Optional<User> findUser = findByPassport(passport);
-        if (findUser.isPresent()) {
-            Account account = users.get(findUser.get()).stream()
-                    .filter(e -> e.getRequisite().equals(requisite))
-                    .findFirst().orElse(null);
-            rsl = Optional.ofNullable(account);
-        }
-        return rsl;
+        return (findUser.isPresent()) ? users.get(findUser.get()).stream()
+                .filter(e -> e.getRequisite().equals(requisite)).findFirst() : Optional.empty();
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
