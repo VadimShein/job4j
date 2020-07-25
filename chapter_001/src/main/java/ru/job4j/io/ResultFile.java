@@ -11,7 +11,7 @@ public class ResultFile {
             try (FileOutputStream out = new FileOutputStream("result.txt")) {
                 for (int[] ints : matrix) {
                     String str = Arrays.toString(ints);
-                    out.write((str + '\n').getBytes());
+                    out.write((str + System.lineSeparator()).getBytes());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
