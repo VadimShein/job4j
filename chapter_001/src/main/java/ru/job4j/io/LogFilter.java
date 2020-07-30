@@ -9,9 +9,8 @@ public class LogFilter {
     public static List<String> filter(String file) {
         List<String> rsl = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            List<String> lines = new ArrayList<>();
-            in.lines().forEach(lines::add);
-            for (String line : lines) {
+            String line;
+            while ((line = in.readLine()) != null) {
                 if (line.contains("404")) {
                     rsl.add(line);
                 }
