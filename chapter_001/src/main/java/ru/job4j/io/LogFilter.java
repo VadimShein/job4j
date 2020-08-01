@@ -25,7 +25,9 @@ public class LogFilter {
                 new BufferedOutputStream(
                         new FileOutputStream(file)
                 ))) {
-            out.write(String.valueOf(log));
+            for (String s : log) {
+                out.write(s + System.lineSeparator());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,7 +35,6 @@ public class LogFilter {
 
     public static void main(String[] args) {
         List<String> log = filter("log.txt");
-        System.out.println(log);
         save(log, "saveLog.txt");
     }
 }
