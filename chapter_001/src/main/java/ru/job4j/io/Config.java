@@ -17,7 +17,7 @@ public class Config {
             String line;
             while ((line = in.readLine()) != null) {
                 if (line.contains("=")) {
-                    String[] mapValues = line.split("=");
+                    String[] mapValues = line.trim().split("=");
                     if (mapValues.length >= 2) {
                         values.put(mapValues[0], mapValues[1]);
                     }

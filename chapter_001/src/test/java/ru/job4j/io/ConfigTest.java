@@ -15,6 +15,15 @@ public class ConfigTest {
         config.load();
         assertThat(config.value("key"), is("value"));
         assertThat(config.value("key2"), is("value2"));
+        assertThat(config.value("key3"), is("value3"));
+    }
+
+    @Test
+    public void whenComment() {
+        String path = "./data/configOne.txt";
+        Config config = new Config(path);
+        config.load();
+        assertThat(config.value("key4"), is(nullValue()));
     }
 
     @Test
@@ -23,6 +32,7 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
         assertThat(config.value("key"), is(nullValue()));
-
     }
+
+
 }
