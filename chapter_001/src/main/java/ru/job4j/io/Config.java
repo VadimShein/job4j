@@ -16,7 +16,7 @@ public class Config {
         try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
             String line;
             while ((line = in.readLine()) != null) {
-                if (line.contains("=")) {
+                if (!line.startsWith("#") && line.contains("=")) {
                     String[] mapValues = line.trim().split("=");
                     if (mapValues.length >= 2) {
                         values.put(mapValues[0], mapValues[1]);
