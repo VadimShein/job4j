@@ -31,7 +31,7 @@ public class StartUITest {
     public void whenPrtMenu() {
         StubInput input = new StubInput(new String[] {"0"});
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), List.of(action));
+        new StartUI().init(input, new MemTracker(), List.of(action));
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add(System.lineSeparator() + "Menu.")
                 .add("0. Stub action")
@@ -45,13 +45,13 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), List.of(action));
+        new StartUI().init(input, new MemTracker(), List.of(action));
         assertThat(action.isCall(), is(true));
     }
 
     @Test
     public void findAllActionTest() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("fix bug");
         tracker.add(item);
         FindAllAction act = new FindAllAction();
@@ -64,7 +64,7 @@ public class StartUITest {
 
     @Test
     public void findByNameActionTest() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("fix bug");
         tracker.add(item);
         FindByNameAction act = new FindByNameAction();

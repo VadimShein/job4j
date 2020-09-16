@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StartUI {
 
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, MemTracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             System.out.println();
@@ -25,7 +25,7 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Input validate = new ValidateInput(input);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         List<UserAction> actions =  new ArrayList<UserAction>();
         actions.add(new CreateAction());
         actions.add(new FindAllAction());
