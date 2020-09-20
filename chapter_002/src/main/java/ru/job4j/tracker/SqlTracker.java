@@ -41,10 +41,15 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) {
         item.setId(generateId());
-        try (PreparedStatement st = this.conn.prepareStatement("insert into items(id, name) values(?, ?)")) {
+        try (PreparedStatement st = this.conn.prepareStatement("insert into items(id, name) values(?, ?)",
+                Statement.RETURN_GENERATED_KEYS)) {
             st.setInt(1, Integer.parseInt(item.getId()));
             st.setString(2, item.getName());
             st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
+            if (rs.next()) {
+                System.out.println(String.format("%s %s", rs.getInt("id"), rs.getString("name")));
+            }
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -78,7 +83,7 @@ public class SqlTracker implements Store {
             st.executeUpdate();
             ResultSet generatedKeys = st.getGeneratedKeys();
             if (generatedKeys.next()) {
-                rsl = Integer.parseInt(generatedKeys.getString(1));
+                rsl = generatedKeys.getInt(1);
             }
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
