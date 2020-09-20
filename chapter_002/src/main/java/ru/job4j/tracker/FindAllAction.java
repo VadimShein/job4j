@@ -10,7 +10,7 @@ public class FindAllAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, MemTracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         List<Item> findAll = tracker.findAll();
         if (findAll.size() != 0) {
             for (int index = 0; index < findAll.size(); index++) {
