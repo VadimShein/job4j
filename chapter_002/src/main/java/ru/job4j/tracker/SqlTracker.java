@@ -58,7 +58,7 @@ public class SqlTracker implements Store {
 
     @Override
     public boolean replace(String id, Item item) {
-        int rsl = -1;
+        int rsl = 0;
         try (PreparedStatement st = this.conn.prepareStatement("update items set name=? where id=?")) {
             st.setString(1, item.getName());
             st.setInt(2, Integer.parseInt(id));
@@ -66,19 +66,19 @@ public class SqlTracker implements Store {
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
-        return rsl != -1;
+        return rsl != 0;
     }
 
     @Override
     public boolean delete(String id) {
-        int rsl = -1;
+        int rsl = 0;
         try (PreparedStatement st = this.conn.prepareStatement("delete from items where id=?")) {
             st.setInt(1, Integer.parseInt(id));
             rsl = st.executeUpdate();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
-        return rsl != -1;
+        return rsl != 0;
     }
 
     @Override
