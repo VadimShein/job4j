@@ -59,15 +59,10 @@ public class SqlTracker implements Store {
     @Override
     public boolean replace(String id, Item item) {
         int rsl = -1;
-        try (PreparedStatement st = this.conn.prepareStatement("update items set name=? where id=?",
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement st = this.conn.prepareStatement("update items set name=? where id=?")) {
             st.setString(1, item.getName());
             st.setInt(2, Integer.parseInt(id));
-            st.executeUpdate();
-            ResultSet generatedKeys = st.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                rsl = generatedKeys.getInt(1);
-            }
+            rsl = st.executeUpdate();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -77,14 +72,9 @@ public class SqlTracker implements Store {
     @Override
     public boolean delete(String id) {
         int rsl = -1;
-        try (PreparedStatement st = this.conn.prepareStatement("delete from items where id=?",
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement st = this.conn.prepareStatement("delete from items where id=?")) {
             st.setInt(1, Integer.parseInt(id));
-            st.executeUpdate();
-            ResultSet generatedKeys = st.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                rsl = generatedKeys.getInt(1);
-            }
+            rsl = st.executeUpdate();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -142,6 +132,6 @@ public class SqlTracker implements Store {
 
     private String generateId() {
         Random rm = new Random();
-        return String.valueOf((rm.nextLong() + System.currentTimeMillis())  / 2100000000 / 1000);
+        return String.valueOf((rm.nextLong() + System.currentTimeMillis() >> 32));
     }
 }
