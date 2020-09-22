@@ -8,11 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
 
 
 public class SqlTracker implements Store {
-
     private Connection conn;
     private static final Logger LOG = LoggerFactory.getLogger(SqlTracker.class);
 
@@ -40,15 +38,14 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
-        item.setId(generateId());
-        try (PreparedStatement st = this.conn.prepareStatement("insert into items(id, name) values(?, ?)",
+        try (PreparedStatement st = this.conn.prepareStatement("insert into items(name) values(?)",
                 Statement.RETURN_GENERATED_KEYS)) {
-            st.setInt(1, Integer.parseInt(item.getId()));
-            st.setString(2, item.getName());
+            st.setString(1, item.getName());
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
             if (rs.next()) {
                 System.out.println(String.format("%s %s", rs.getInt("id"), rs.getString("name")));
+                item.setId(String.valueOf(rs.getInt("id")));
             }
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
@@ -128,10 +125,5 @@ public class SqlTracker implements Store {
             LOG.error(e.getMessage(), e);
         }
         return newItem;
-    }
-
-    private String generateId() {
-        Random rm = new Random();
-        return String.valueOf((rm.nextLong() + System.currentTimeMillis() >> 32));
     }
 }
