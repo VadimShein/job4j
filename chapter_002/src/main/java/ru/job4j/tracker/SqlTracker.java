@@ -10,9 +10,15 @@ import java.util.List;
 import java.util.Properties;
 
 
-public class SqlTracker implements Store {
+public class SqlTracker implements Store, AutoCloseable {
     private Connection conn;
     private static final Logger LOG = LoggerFactory.getLogger(SqlTracker.class);
+
+    public SqlTracker() {
+    }
+    public SqlTracker(Connection connection) {
+        this.conn = connection;
+    }
 
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
