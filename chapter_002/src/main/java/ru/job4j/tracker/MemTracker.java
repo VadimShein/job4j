@@ -5,9 +5,13 @@ import java.util.List;
 import java.util.Random;
 
 
-public class MemTracker {
+public class MemTracker implements Store, AutoCloseable {
 
     private final List<Item> items = new ArrayList<Item>();
+
+    @Override
+    public void init() {
+    }
 
     public Item add(Item item) {
         item.setId(generateId());
@@ -69,5 +73,9 @@ public class MemTracker {
     private String generateId() {
         Random rm = new Random();
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
+    }
+
+    @Override
+    public void close() throws Exception {
     }
 }

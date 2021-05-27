@@ -52,6 +52,7 @@ public class StartUITest {
     @Test
     public void findAllActionTest() {
         SqlTracker tracker = new SqlTracker();
+        tracker.init();
         Item item = new Item("fix bug");
         tracker.add(item);
         FindAllAction act = new FindAllAction();
@@ -65,6 +66,7 @@ public class StartUITest {
     @Test
     public void findByNameActionTest() {
         SqlTracker tracker = new SqlTracker();
+        tracker.init();
         Item item = new Item("fix bug");
         tracker.add(item);
         FindByNameAction act = new FindByNameAction();
