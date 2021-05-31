@@ -18,12 +18,13 @@ public class MemTrackerMockTest {
     @Test
     public void whenReplaceActionTrue() {
         Store tracker = new MemTracker();
-        tracker.add(new Item("Replaced item"));
+        tracker.add(new Item("item"));
         String replacedName = "New item name";
         UserAction action = new ReplaceAction();
+        Item addedItem = tracker.findByName("item").get(0);
 
         Input input = mock(Input.class);
-        when(input.askStr("Enter id: ")).thenReturn(tracker.findByName("Replaced item").get(0).getId());
+        when(input.askStr("Enter id: ")).thenReturn(addedItem.getId());
         when(input.askStr("Enter name: ")).thenReturn(replacedName);
 
         System.setOut(new PrintStream(this.out));
@@ -31,9 +32,10 @@ public class MemTrackerMockTest {
         action.execute(input, tracker);
         System.setOut(System.out);
 
+        String result = tracker.findByName(replacedName).get(0).getName();
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("=== Edit item ====" + ln + "performed" + ln));
-        assertThat(tracker.findAll().get(0).getName(), is(replacedName));
+        assertThat(result, is(replacedName));
     }
 
     @Test
@@ -41,18 +43,20 @@ public class MemTrackerMockTest {
         Store tracker = new MemTracker();
         tracker.add(new Item("item"));
         UserAction action = new DeleteAction();
+        Item addedItem = tracker.findByName("item").get(0);
 
         Input input = mock(Input.class);
-        when(input.askStr("Enter id: ")).thenReturn(tracker.findByName("item").get(0).getId());
+        when(input.askStr("Enter id: ")).thenReturn(addedItem.getId());
 
         System.setOut(new PrintStream(this.out));
         System.out.println(action.name());
         action.execute(input, tracker);
         System.setOut(System.out);
 
+        int result = tracker.findAll().size();
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("=== Delete item ====" + ln + "performed" + ln));
-        assertThat(tracker.findAll().size(), is(0));
+        assertThat(result, is(0));
     }
 
     @Test
@@ -69,9 +73,10 @@ public class MemTrackerMockTest {
         action.execute(input, tracker);
         System.setOut(System.out);
 
+        int result = tracker.findAll().size();
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("=== Delete item ====" + ln + "not performed" + ln));
-        assertThat(tracker.findAll().size(), is(1));
+        assertThat(result, is(1));
     }
 
     @Test
@@ -79,9 +84,10 @@ public class MemTrackerMockTest {
         Store tracker = new MemTracker();
         tracker.add(new Item("item"));
         UserAction action = new FindByIdAction();
+        Item addedItem = tracker.findByName("item").get(0);
 
         Input input = mock(Input.class);
-        when(input.askStr("Enter id: ")).thenReturn(tracker.findByName("item").get(0).getId());
+        when(input.askStr("Enter id: ")).thenReturn(addedItem.getId());
 
         System.setOut(new PrintStream(this.out));
         System.out.println(action.name());
@@ -90,7 +96,7 @@ public class MemTrackerMockTest {
 
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("=== Find item by Id ====" + ln
-                + "Find value: item " + tracker.findByName("item").get(0).getId() + ln));
+                + "Find value: item " + addedItem.getId() + ln));
     }
 
     @Test
@@ -117,6 +123,7 @@ public class MemTrackerMockTest {
         Store tracker = new MemTracker();
         tracker.add(new Item("item"));
         UserAction action = new FindByNameAction();
+        Item addedItem = tracker.findByName("item").get(0);
 
         Input input = mock(Input.class);
         when(input.askStr("Enter name: ")).thenReturn("item");
@@ -128,7 +135,7 @@ public class MemTrackerMockTest {
 
         String ln = System.lineSeparator();
         assertThat(out.toString(), is("=== Find items by name ====" + ln
-                + "Find value: item " + tracker.findByName("item").get(0).getId() + ln));
+                + "Find value: item " + addedItem.getId() + ln));
     }
 
     @Test
@@ -138,7 +145,7 @@ public class MemTrackerMockTest {
         UserAction action = new FindByNameAction();
 
         Input input = mock(Input.class);
-        when(input.askStr("Enter id: ")).thenReturn("99");
+        when(input.askStr("Enter name: ")).thenReturn("99");
 
         System.setOut(new PrintStream(this.out));
         System.out.println(action.name());
