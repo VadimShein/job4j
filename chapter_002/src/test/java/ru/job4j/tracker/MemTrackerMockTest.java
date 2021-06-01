@@ -18,10 +18,9 @@ public class MemTrackerMockTest {
     @Test
     public void whenReplaceActionTrue() {
         Store tracker = new MemTracker();
-        tracker.add(new Item("item"));
+        Item addedItem = tracker.add(new Item("item"));
         String replacedName = "New item name";
         UserAction action = new ReplaceAction();
-        Item addedItem = tracker.findByName("item").get(0);
 
         Input input = mock(Input.class);
         when(input.askStr("Enter id: ")).thenReturn(addedItem.getId());
@@ -41,9 +40,8 @@ public class MemTrackerMockTest {
     @Test
     public void whenDeleteActionTrue() {
         Store tracker = new MemTracker();
-        tracker.add(new Item("item"));
+        Item addedItem = tracker.add(new Item("item"));
         UserAction action = new DeleteAction();
-        Item addedItem = tracker.findByName("item").get(0);
 
         Input input = mock(Input.class);
         when(input.askStr("Enter id: ")).thenReturn(addedItem.getId());
@@ -82,9 +80,8 @@ public class MemTrackerMockTest {
     @Test
     public void whenFindByIdActionTrue() {
         Store tracker = new MemTracker();
-        tracker.add(new Item("item"));
+        Item addedItem = tracker.add(new Item("item"));
         UserAction action = new FindByIdAction();
-        Item addedItem = tracker.findByName("item").get(0);
 
         Input input = mock(Input.class);
         when(input.askStr("Enter id: ")).thenReturn(addedItem.getId());
@@ -121,9 +118,8 @@ public class MemTrackerMockTest {
     @Test
     public void whenFindByNameActionTrue() {
         Store tracker = new MemTracker();
-        tracker.add(new Item("item"));
+        Item addedItem = tracker.add(new Item("item"));
         UserAction action = new FindByNameAction();
-        Item addedItem = tracker.findByName("item").get(0);
 
         Input input = mock(Input.class);
         when(input.askStr("Enter name: ")).thenReturn("item");
